@@ -3,7 +3,7 @@ public class Balsa {
     private int capacidad;
     private double tiempo;
 
-    public Balsa(int capacidad, int tiempo) {
+    public Balsa(int capacidad, double tiempo) {
         this.capacidad = capacidad;
         this.tiempo = tiempo;
     }
