@@ -27,7 +27,8 @@ public class Main {
             System.out.println(pasajero);
         }
 
-
+        //añadir pasajeros a la balsa
+        Rescate rescate = new Rescate(pasajeros);
 
     }
 }

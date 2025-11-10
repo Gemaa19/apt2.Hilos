@@ -1,8 +1,17 @@
-public class Rescate implements Runnable{
+import java.util.List;
 
-    public Rescate(){}
+public class Rescate implements Runnable{
+    boolean hayGente;
+
+    public Rescate(List<Pasajero> pasajeros){
+        Barco barco = new Barco(pasajeros);
+        hayGente = barco.hayPasajeros();
+    }
+
     @Override
     public void run() {
-        while(true){}
+        while(hayGente){
+            System.out.println("Balsa coge gente");
+        }
     }
 }
