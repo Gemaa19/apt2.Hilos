@@ -1,7 +1,7 @@
 public class Balsa {
 
     private int capacidad;
-    private int tiempo;
+    private double tiempo;
 
     public Balsa(int capacidad, int tiempo) {
         this.capacidad = capacidad;
