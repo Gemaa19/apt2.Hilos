@@ -24,11 +24,11 @@ public class Main {
             }
             Pasajero pasajero = new Pasajero(id, prioridad);
             pasajeros.add(pasajero);
-            System.out.println(pasajero);
+            System.out.println(pasajero.toString());
         }
+
 
         //añadir pasajeros a la balsa
         Rescate rescate = new Rescate(pasajeros);
-
     }
 }

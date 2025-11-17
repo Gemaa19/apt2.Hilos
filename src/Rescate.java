@@ -1,7 +1,7 @@
 import java.util.List;
 
-public class Rescate implements Runnable{
-    boolean hayGente;
+public class Rescate implements Runnable {
+    private boolean hayGente;
 
     public Rescate(List<Pasajero> pasajeros){
         Barco barco = new Barco(pasajeros);

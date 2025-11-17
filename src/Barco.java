@@ -13,4 +13,21 @@ public class Barco {
         return !pasajeros.isEmpty();
     }
 
+    public Pasajero obtenerPasajPriori(){
+        if(pasajeros.isEmpty()){
+            return null;
+        }else {
+            Pasajero pasajPrio = pasajeros.get(0);
+            for (Pasajero p : pasajeros) {
+                if(pasajPrio.getPrioridad()==1){
+                    break;
+                }else{
+                    if (pasajPrio.getPrioridad()>p.getPrioridad()){
+                        pasajPrio=p;
+                    }
+                }
+            }
+            return pasajPrio;
+        }
+    }
 }
