@@ -7,13 +7,14 @@ public class Main {
     public static void main(String[] args) {
         //Creamos el array de pasajeros
         List<Pasajero> pasajeros = new ArrayList<>();
+        List<Pasajero> personasRecogidas = new ArrayList<>();
 
         //Creamos las 5 balsas
-        Balsa balAcasta = new Balsa(1, 0.5);
-        Balsa balBanff = new Balsa(2, 1);
-        Balsa balCadiz = new Balsa(3, 2);
-        Balsa balDeimos = new Balsa(4, 4);
-        Balsa balExpedición	= new Balsa(5, 8);
+        Balsa balAcasta = new Balsa(1, 0.5, personasRecogidas);
+        Balsa balBanff = new Balsa(2, 1,personasRecogidas);
+        Balsa balCadiz = new Balsa(3, 2, personasRecogidas);
+        Balsa balDeimos = new Balsa(4, 4, personasRecogidas);
+        Balsa balExpedición	= new Balsa(5, 8, personasRecogidas);
 
         //Hacemos un bucle para crear todos los pasajeros y los añadimos al arrayList
 
@@ -27,8 +28,11 @@ public class Main {
             System.out.println(pasajero.toString());
         }
 
-
         //añadir pasajeros a la balsa
-        Rescate rescate = new Rescate(pasajeros);
+        /*Rescate rescate = new Rescate(pasajeros);*/
+
+        /*personasRecogidas.add();*/
+
+
     }
 }

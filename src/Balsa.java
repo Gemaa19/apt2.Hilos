@@ -5,11 +5,12 @@ public class Balsa {
 
     private int capacidad;
     private double tiempo;
-    private List<Pasajero> personasRecogidas = new ArrayList<>();
+    private List<Pasajero> personasRecogidas;
 
-    public Balsa(int capacidad, double tiempo) {
+    public Balsa(int capacidad, double tiempo, List<Pasajero> personasRecogidas) {
         this.capacidad = capacidad;
         this.tiempo = tiempo;
+        this.personasRecogidas.addAll(personasRecogidas);
     }
 
     public int getCapacidad() {
