@@ -9,6 +9,8 @@ public class Main {
         List<Pasajero> pasajeros = new ArrayList<>();
         List<Pasajero> personasRecogidas = new ArrayList<>();
 
+        Barco laAlianza = new Barco(pasajeros);
+
         //Creamos las 5 balsas
         Balsa balAcasta = new Balsa(1, 0.5, personasRecogidas);
         Balsa balBanff = new Balsa(2, 1,personasRecogidas);
@@ -29,8 +31,8 @@ public class Main {
         }
 
         //añadir pasajeros a la balsa
-        /*Rescate rescate = new Rescate(pasajeros);*/
-
+        Rescate rescate = new Rescate(laAlianza, balAcasta, pasajeros, balAcasta.getCapacidad());
+        rescate.run();
         /*personasRecogidas.add();*/
 
 

@@ -7,6 +7,9 @@ public class Balsa {
     private double tiempo;
     private List<Pasajero> personasRecogidas;
 
+    public Balsa() {
+    }
+
     public Balsa(int capacidad, double tiempo, List<Pasajero> personasRecogidas) {
         this.capacidad = capacidad;
         this.tiempo = tiempo;

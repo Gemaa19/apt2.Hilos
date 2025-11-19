@@ -3,10 +3,13 @@ import java.util.List;
 public class Rescate implements Runnable {
     private boolean hayGente;
     private Barco barco;
+    private Balsa balsa;
+    private int capacidad;
 
-    public Rescate(Barco barco, List<Pasajero> pasajeros){
+    public Rescate(Barco barco, Balsa balsa, List<Pasajero> pasajeros, int capacidad){
         this.barco = barco;
-        hayGente = barco.hayPasajeros();
+        this.balsa = balsa;
+        this.capacidad = capacidad;
     }
 
     @Override
@@ -14,6 +17,16 @@ public class Rescate implements Runnable {
         while(hayGente){
             barco.obtenerPasajPriori();
             System.out.println("Balsa coge gente");
+            balsa.getCapacidad();
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Rescate{" +
+                ", barco=" + barco +
+                ", balsa=" + balsa +
+                ", capacidad=" + capacidad +
+                '}';
     }
 }
