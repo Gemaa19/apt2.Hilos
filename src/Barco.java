@@ -3,22 +3,22 @@ import java.util.List;
 
 public class Barco {
 
-    private final List<Pasajero> pasajeros = new ArrayList<>();
+    private final List<Pasajero> pasajerosBarco = new ArrayList<>();
 
-    public Barco(List<Pasajero> pasajeros) {
-        this.pasajeros.addAll(pasajeros);
+    public Barco(List<Pasajero> pasajerosBarco) {
+        this.pasajerosBarco.addAll(pasajerosBarco);
     }
 
     public boolean hayPasajeros(){
-        return !pasajeros.isEmpty();
+        return !pasajerosBarco.isEmpty();
     }
 
     public Pasajero obtenerPasajPriori(){
-        if(pasajeros.isEmpty()){
+        if(pasajerosBarco.isEmpty()){
             return null;
         }else {
-            Pasajero pasajPrio = pasajeros.get(0);
-            for (Pasajero p : pasajeros) {
+            Pasajero pasajPrio = pasajerosBarco.get(0);
+            for (Pasajero p : pasajerosBarco) {
                 if(pasajPrio.getPrioridad()==1){
                     break;
                 }else{
