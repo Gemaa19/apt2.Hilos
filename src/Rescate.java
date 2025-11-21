@@ -6,7 +6,7 @@ public class Rescate implements Runnable {
     private Balsa balsa;
     //private int capacidad;
 
-    public Rescate(Barco barco, Balsa balsa, String nombreBalsa){
+    public Rescate(Barco barco, Balsa balsa){
         this.barco = barco;
         this.balsa = balsa;
     }
@@ -14,21 +14,31 @@ public class Rescate implements Runnable {
     @Override
     public void run() {
         while(hayGente){
-            for (int i = 0; i < balsa.getCapacidad(); i++) {
-                Pasajero p = barco.obtenerPasajPriori();
-                System.out.println("Balsa coge gente");
-                balsa.recogerPasajero(p);
-            }
+           subirBalsa();
             System.out.println(balsa);
             try{
-                Thread.sleep((long)balsa.getTiempo()*1000);
+                Thread.sleep((int) (balsa.getTiempo()*1000));
             }catch(InterruptedException e){
                 e.printStackTrace();
             }
+
             if(!barco.hayPasajeros()){
                 hayGente = false;
             }
         }
+    }
+
+    //suben a la balsa
+    public synchronized void subirBalsa(){
+        for (int i = 0; i < balsa.getCapacidad(); i++) {
+            Pasajero p = barco.obtenerPasajPriori();
+            System.out.println("Balsa coge gente");
+            balsa.recogerPasajero(p);
+        }
+    }
+
+    public void bajarBalsa(){
+        balsa.quitarPersonas();
     }
 
     @Override

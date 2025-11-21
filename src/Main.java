@@ -30,11 +30,13 @@ public class Main {
         //Creo el barco
         Barco barco = new Barco(pasajeros);
         //Creo los hilos del rescate, con cada balsa
-        Thread t1 = new Thread(new Rescate(barco, new Balsa(1, 0.5), "Acasta"));
-        Thread t2 = new Thread(new Rescate(barco, new Balsa(1, 0.5), "Acasta"));
-        Thread t3 = new Thread(new Rescate(barco, new Balsa(1, 0.5), "Acasta"));
-        Thread t4 = new Thread(new Rescate(barco, new Balsa(1, 0.5), "Acasta"));
-        Thread t5 = new Thread(new Rescate(barco, new Balsa(1, 0.5), "Acasta"));
+        Thread t1 = new Thread(new Rescate(barco, new Balsa(1, 0.5, "Acasta")));
+        Thread t2 = new Thread(new Rescate(barco, new Balsa(1, 0.5,"Banff")));
+        Thread t3 = new Thread(new Rescate(barco, new Balsa(1, 0.5, "Cadiz")));
+        Thread t4 = new Thread(new Rescate(barco, new Balsa(1, 0.5, "Deimos")));
+        Thread t5 = new Thread(new Rescate(barco, new Balsa(1, 0.5, "Expedición")));
+
+        //iniciamos los hilos
         t1.start();
         t2.start();
         t3.start();
