@@ -9,7 +9,7 @@ public class Main {
         List<Pasajero> pasajeros = new ArrayList<>();
 
         //Hacemos un bucle para crear todos los pasajeros y los añadimos al arrayList
-        for (int id=1;id<=32;id++){
+        for (int id=1;id<=352;id++){
             int prioridad = (int)(Math.random()*(5-1)+1);
             if(prioridad == 5){
                 prioridad = 1;
