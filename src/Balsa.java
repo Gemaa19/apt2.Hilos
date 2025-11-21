@@ -5,19 +5,33 @@ public class Balsa {
 
     private int capacidad;
     private double tiempo;
-    private List<Pasajero> personasRecogidas;
+    private List<Pasajero> personasRecogidas  = new ArrayList<>();
 
     public Balsa() {
     }
 
-    public Balsa(int capacidad, double tiempo, List<Pasajero> personasRecogidas) {
+    public Balsa(int capacidad, double tiempo) {
         this.capacidad = capacidad;
         this.tiempo = tiempo;
-        this.personasRecogidas.addAll(personasRecogidas);
     }
 
     public int getCapacidad() {
         return capacidad;
     }
 
+    public double getTiempo() {
+        return tiempo;
+    }
+    public void recogerPasajero(Pasajero p){
+        personasRecogidas.add(p);
+    }
+
+    @Override
+    public String toString() {
+        return "Balsa{" +
+                "capacidad=" + capacidad +
+                ", tiempo=" + tiempo +
+                ", personasRecogidas=" + personasRecogidas +
+                '}';
+    }
 }

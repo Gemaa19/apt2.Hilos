@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Rescate implements Runnable {
+public class Rescate extends Thread {
     private boolean hayGente;
     private Barco barco;
     private Balsa balsa;
