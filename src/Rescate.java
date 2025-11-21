@@ -42,7 +42,7 @@ public class Rescate implements Runnable {
         System.out.println("La balsa " + balsa.getNombre() + " ha recogido " + balsa.getCapacidad() + " pasajeros.");
     }
     //bajar la gente de la balsa para que pueda volver a coger gente
-    public void bajarBalsa(){
+    public synchronized void bajarBalsa(){
         balsa.quitarPersonas(barco.obtenerPasajPriori());
         System.out.println("La balsa " + balsa.getNombre() + " deja sus pasajeros en tierra");
     }
