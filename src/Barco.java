@@ -13,7 +13,7 @@ public class Barco {
         return !pasajerosBarco.isEmpty();
     }
 
-    public Pasajero obtenerPasajPriori(){
+    public synchronized Pasajero obtenerPasajPriori(){
         if(pasajerosBarco.isEmpty()){
             return null;
         }else {
@@ -27,6 +27,8 @@ public class Barco {
                     }
                 }
             }
+            //Cuando rescata al pasajero hay que sacarlo del Barco
+            pasajerosBarco.remove(pasajPrio);
             return pasajPrio;
         }
     }
