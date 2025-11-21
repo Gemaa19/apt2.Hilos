@@ -33,12 +33,8 @@ public class Balsa {
         personasRecogidas.add(p);
     }
 
-    public void quitarPersonas(){
-        for (Pasajero p : personasRecogidas) {
+    public void quitarPersonas(Pasajero p){
             personasRecogidas.remove(p);
-            System.out.println("Persona fuera de la barca: " + p);
-        }
-
     }
 
     @Override
