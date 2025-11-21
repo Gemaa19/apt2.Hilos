@@ -24,6 +24,11 @@ public class Balsa {
     public double getTiempo() {
         return tiempo;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
     public void recogerPasajero(Pasajero p){
         personasRecogidas.add(p);
     }
@@ -41,6 +46,7 @@ public class Balsa {
         return "Balsa{" +
                 "capacidad=" + capacidad +
                 ", tiempo=" + tiempo +
+                ", nombre='" + nombre + '\'' +
                 ", personasRecogidas=" + personasRecogidas +
                 '}';
     }

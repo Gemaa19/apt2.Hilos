@@ -15,13 +15,17 @@ public class Rescate implements Runnable {
     public void run() {
         while(hayGente){
            subirBalsa();
-            System.out.println(balsa);
+            System.out.println("Rescate{" +
+                    "hayGente=" + hayGente +
+                    ", barco=" + barco +
+                    ", balsa=" + balsa +
+                    '}');
             try{
                 Thread.sleep((int) (balsa.getTiempo()*1000));
             }catch(InterruptedException e){
                 e.printStackTrace();
             }
-
+            bajarBalsa();
             if(!barco.hayPasajeros()){
                 hayGente = false;
             }
@@ -39,14 +43,6 @@ public class Rescate implements Runnable {
 
     public void bajarBalsa(){
         balsa.quitarPersonas();
-    }
-
-    @Override
-    public String toString() {
-        return "Rescate{" +
-                "hayGente=" + hayGente +
-                ", barco=" + barco +
-                ", balsa=" + balsa +
-                '}';
+        System.out.println("Balsa baja gente");
     }
 }
