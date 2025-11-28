@@ -60,23 +60,28 @@ public class Rescate implements Runnable {
     }
 
     public synchronized Pasajero obtenerPasajPriori(){
+        Pasajero pasajPrio = barco.getPasajerosBarco().get(0);
         if (barco.getPasajerosBarco().isEmpty()) {
             return null;
         } else {
-            Pasajero pasajPrio = barco.getPasajerosBarco().get(0);
-            for (Pasajero p : barco.getPasajerosBarco()) {
-                if (pasajPrio.getPrioridad() == 1) {
-                    break;
-                } else {
-                    if (pasajPrio.getPrioridad() > p.getPrioridad()) {
-                        pasajPrio = p;
+        try {
+            this.getSemaphore().acquire();
+                for (Pasajero p : barco.getPasajerosBarco()) {
+                    if (pasajPrio.getPrioridad() == 1) {
+                        break;
+                    } else {
+                        if (pasajPrio.getPrioridad() > p.getPrioridad()) {
+                            pasajPrio = p;
+                        }
                     }
                 }
-            }
-            //Cuando rescata al pasajero hay que sacarlo del Barco
-            barco.getPasajerosBarco().remove(pasajPrio);
-            return pasajPrio;
+                //Cuando rescata al pasajero hay que sacarlo del Barco
+                barco.getPasajerosBarco().remove(pasajPrio);
+        }catch (InterruptedException e){
+            e.printStackTrace();
         }
+                return pasajPrio;
+            }
     }
 
     //bajar la gente de la balsa para que pueda volver a coger gente
