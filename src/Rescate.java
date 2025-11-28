@@ -27,12 +27,10 @@ public class Rescate implements Runnable {
             System.out.println("La balsa " + balsa.getNombre() + " ve que gente que rescatar: " + barco.hayPasajeros());
             subirBalsa();
             try{
-                this.getSemaphore().acquire();
                 Thread.sleep((int) (balsa.getTiempo()*1000));
             }catch(InterruptedException e){
                 e.printStackTrace();
             }
-        this.getSemaphore().release();
             bajarBalsa();
             if(!barco.hayPasajeros()){
                 hayGente = false;
