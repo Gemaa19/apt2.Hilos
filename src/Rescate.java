@@ -27,8 +27,8 @@ public class Rescate implements Runnable {
             System.out.println("La balsa " + balsa.getNombre() + " ve que gente que rescatar: " + barco.hayPasajeros());
             subirBalsa();
             try{
-                Thread.sleep((int) (balsa.getTiempo()*1000));
                 this.getSemaphore().acquire();
+                Thread.sleep((int) (balsa.getTiempo()*1000));
             }catch(InterruptedException e){
                 e.printStackTrace();
             }
@@ -44,19 +44,33 @@ public class Rescate implements Runnable {
     //suben a la balsa
     public synchronized void subirBalsa(){
         System.out.println("La balsa " + balsa.getNombre() + " comienza a recoger pasajeros");
-        for (int i = 0; i < balsa.getCapacidad(); i++) {
-            Pasajero p = barco.obtenerPasajPriori();
-            if (p == null){
-                break;
+        try{
+            this.getSemaphore().acquire();
+            for (int i = 0; i < balsa.getCapacidad(); i++) {
+                Pasajero p = barco.obtenerPasajPriori();
+                if (p == null){
+                    break;
+                }
+                balsa.recogerPasajero(p);
+                System.out.println("Balsa " + balsa.getNombre() + ": Pasajero " + (i+1) + " con id: "+ p.getId());
             }
-            balsa.recogerPasajero(p);
-            System.out.println("Balsa " + balsa.getNombre() + ": Pasajero " + (i+1) + " con id: "+ p.getId());
+        }catch(InterruptedException e){
+            e.printStackTrace();
         }
+        this.getSemaphore().release();
         System.out.println("La balsa " + balsa.getNombre() + " ha recogido " + balsa.getCapacidad() + " pasajeros.");
     }
+
     //bajar la gente de la balsa para que pueda volver a coger gente
     public synchronized void bajarBalsa(){
-        balsa.quitarPersonas(barco.obtenerPasajPriori());
+        try {
+            this.getSemaphore().acquire();
+            balsa.quitarPersonas(barco.obtenerPasajPriori());
+
+        }catch(InterruptedException e){
+        e.printStackTrace();
+    }
+        this.getSemaphore().release();
         System.out.println("La balsa " + balsa.getNombre() + " deja sus pasajeros en tierra");
     }
 }
