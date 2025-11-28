@@ -45,7 +45,7 @@ public class Rescate implements Runnable {
         try{
             this.getSemaphore().acquire();
             for (int i = 0; i < balsa.getCapacidad(); i++) {
-                Pasajero p = barco.obtenerPasajPriori();
+                Pasajero p = obtenerPasajPriori();
                 if (p == null){
                     break;
                 }
@@ -59,11 +59,31 @@ public class Rescate implements Runnable {
         System.out.println("La balsa " + balsa.getNombre() + " ha recogido " + balsa.getCapacidad() + " pasajeros.");
     }
 
+    public synchronized Pasajero obtenerPasajPriori(){
+        if (barco.getPasajerosBarco().isEmpty()) {
+            return null;
+        } else {
+            Pasajero pasajPrio = barco.getPasajerosBarco().get(0);
+            for (Pasajero p : barco.getPasajerosBarco()) {
+                if (pasajPrio.getPrioridad() == 1) {
+                    break;
+                } else {
+                    if (pasajPrio.getPrioridad() > p.getPrioridad()) {
+                        pasajPrio = p;
+                    }
+                }
+            }
+            //Cuando rescata al pasajero hay que sacarlo del Barco
+            barco.getPasajerosBarco().remove(pasajPrio);
+            return pasajPrio;
+        }
+    }
+
     //bajar la gente de la balsa para que pueda volver a coger gente
     public synchronized void bajarBalsa(){
         try {
             this.getSemaphore().acquire();
-            balsa.quitarPersonas(barco.obtenerPasajPriori());
+            balsa.quitarPersonas(obtenerPasajPriori());
 
         }catch(InterruptedException e){
         e.printStackTrace();
