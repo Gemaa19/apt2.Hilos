@@ -1,13 +1,24 @@
 import java.util.List;
+import java.util.concurrent.Semaphore;
 
 public class Rescate implements Runnable {
     private boolean hayGente = true;
     private Barco barco;
     private Balsa balsa;
+    private Semaphore semaphore;
 
-    public Rescate(Barco barco, Balsa balsa){
+    public Rescate(Barco barco, Semaphore semaphore, Balsa balsa){
         this.barco = barco;
         this.balsa = balsa;
+        this.semaphore = semaphore;
+    }
+
+    public Semaphore getSemaphore() {
+        return semaphore;
+    }
+
+    public void setSemaphore(Semaphore semaphore) {
+        this.semaphore = semaphore;
     }
 
     @Override
@@ -17,9 +28,11 @@ public class Rescate implements Runnable {
             subirBalsa();
             try{
                 Thread.sleep((int) (balsa.getTiempo()*1000));
+                this.getSemaphore().acquire();
             }catch(InterruptedException e){
                 e.printStackTrace();
             }
+        this.getSemaphore().release();
             bajarBalsa();
             if(!barco.hayPasajeros()){
                 hayGente = false;
